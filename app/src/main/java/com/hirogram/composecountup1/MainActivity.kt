@@ -7,31 +7,38 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 
 class MainActivity : ComponentActivity() {
+
+    private val viewModel: CountViewModel = CountViewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            CountUp()
+            CountUp(viewModel = viewModel)
         }
     }
 
     //HelloWorldを表示するComposable関数
     @Composable
-    fun CountUp() {
-        var count: Int by remember {
-            mutableStateOf(0)
-        }
+    fun CountUp(viewModel: CountViewModel) {
+        val count: Int by viewModel.count
 
         Column {
-            Text(text = "$count")
+            Text(
+                text = "$count"
+            )
 
-            Button(onClick = { count += 1 }) {
-                Text(text = "CountUp!")
+            Button(
+                onClick = {
+                    viewModel.onCountUpTapped()
+                }
+            )
+            {
+                Text(
+                    text = "CountUp!!"
+                )
             }
         }
     }
