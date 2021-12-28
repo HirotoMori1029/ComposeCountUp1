@@ -2,8 +2,9 @@ package com.hirogram.composecountup1
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.ViewModel
 
-class CountViewModel {
+class CountViewModel: ViewModel() {
     //カウントの回数を保持する
     val count: MutableState<Int> = mutableStateOf(0)
 
