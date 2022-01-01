@@ -12,7 +12,7 @@ import androidx.compose.runtime.getValue
 
 class MainActivity : ComponentActivity() {
 
-    private val viewModel: CountViewModel by viewModels<CountViewModel>()
+    private val viewModel: CountViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +40,17 @@ class MainActivity : ComponentActivity() {
                 Text(
                     text = "CountUp!!"
                 )
+            }
+
+            Button(
+                onClick = {
+                    viewModel.onClearTapped()
+                }
+            )
+            {
+             Text(
+                 text = "Clear!"
+             )
             }
         }
     }
